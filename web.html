@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Fresh Dairy</title>
+    <link rel="stylesheet" href="web.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="ff1.html"><img src="download[1].png" alt="Company Logo"></a>
+    </div>
+    <nav>
+        <a href="ff1.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="farmersell.html">Farmer Sell</a>
+        <a href="web.html">Products</a>
+        <a href="cart.html">Cart 🛒</a>
+    </nav>
+    <div class="contact">
+        <span>Call us: 123-456-7890</span>
+    </div>
+</header>
+<div class="products">
+    <h2>Organic Dairy</h2>
+    <div class="search-filter">
+        <input type="text" placeholder="Search Dairy" onkeyup="filterProducts()">
+        <div class="view-options">
+            <i class="fas fa-th-large" onclick="toggleView('grid')"></i>
+            <i class="fas fa-bars" onclick="toggleView('list')"></i>
+        </div>
+    </div>
+    <div class="product-list">
+        <div class="product" data-name="Butter - Pasteurized">
+            <img src="butter.jpg" alt="Butter - Pasteurized">
+            <h3>Butter - Pasteurized</h3>
+            <p>50.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product" data-name="Cheese Cubes">
+            <img src="cheese.jpg" alt="Cheese Cubes">
+            <h3>Cheese Cubes</h3>
+            <p>30.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product" data-name="Yogurt">
+            <img src="yog.jpg" alt="Yogurt">
+            <h3>Yogurt</h3>
+            <p>80.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product" data-name="Curd">
+            <img src="curd.jpg" alt="Curd">
+            <h3>Curd</h3>
+            <p>60.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product" data-name="Organic Cow Milk">
+            <img src="mil.jpg" alt="Organic Cow Milk">
+            <h3>Organic Cow Milk</h3>
+            <p>40.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product" data-name="Fresh Paneer">
+            <img src="pan.jpg" alt="Fresh Paneer">
+            <h3>Fresh Paneer</h3>
+            <p>70.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+    </div>
+</div>
+<div class="product-details">
+    <div class="content">
+        <button class="close">x</button>
+        <img src="" alt="Product Image">
+        <h3></h3>
+        <p></p>
+        <div class="quantity">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+        </div>
+        <div class="farmer">
+            <label for="farmer">Farmer:</label>
+            <select id="farmer" name="farmer">
+                <option value="Farmer 1">Farmer 1</option>
+                <option value="Farmer 2">Farmer 2</option>
+                <option value="Farmer 3">Farmer 3</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="order-now">Order Now</button>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2024 Farm Fresh. All rights reserved. | <a href="#">Privacy Policy</a></p>
+</footer>
+<script src="web.js"></script>
+</body>
+</html>

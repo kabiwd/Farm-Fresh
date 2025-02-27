@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Fresh Vegetables</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo img {
+            max-height: 70px;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover {
+            color: #4CAF50;
+        }
+        .category {
+            padding: 20px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-right: 1px solid #ccc;
+            flex-basis: 250px;
+            flex-shrink: 0;
+        }
+        .category a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .category a:hover {
+            background-color: #f0f0f0;
+        }
+        .hero {
+            background-color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            background-image: url('rustic-composition-of-mixed-fruits-and-vegetables-2023-11-27-05-37-21-utc.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; /* Ensure text is readable */
+            display: flex; /* Use flex layout */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 48px; /* Increased font size */
+            font-weight: bold; /* Bold text */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px 20px; /* Padding for background */
+            border-radius: 10px; /* Rounded corners */
+            display: inline-block; /* Fit to text size */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Text shadow */
+        }
+        .hero p {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #eee; /* Lighter color for contrast */
+        }
+        .hero .cta {
+            display: inline-block; /* Inline-block allows for width adjustment */
+            margin: 20px 0 0; /* Center the button and add margin above */
+            padding: 10px 20px; /* Adjust padding for smaller size */
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px; /* Adjust font size */
+            text-align: center; /* Center text inside the button */
+        }
+        .content {
+            display: flex;
+            margin: 0 20px;
+        }
+        .products {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .products h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .products .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .products .product {
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .products .product img {
+            width: 100%;
+            height: auto;
+        }
+        .products .product h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .products .product p {
+            margin: 0;
+            font-size: 16px;
+            color: #777;
+        }
+        .about {
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        /* New Section CSS */
+        .we-are-fresh-food {
+            background-color: #fff;
+            padding: 50px 20px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 20px;
+        }
+        .we-are-fresh-food img {
+            max-width: 360px;
+            height: auto;
+            flex-shrink: 0;
+        }
+        .we-are-fresh-food-content {
+            max-width: 600px;
+        }
+        .we-are-fresh-food-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .we-are-fresh-food-content p {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 40px;
+        }
+        .we-are-fresh-food-content .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .we-are-fresh-food-content .feature {
+            text-align: center;
+            width: 200px;
+        }
+        .we-are-fresh-food-content .feature img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .we-are-fresh-food-content .feature h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .we-are-fresh-food-content .feature p {
+            font-size: 16px;
+            color: #777;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="ff2.html"><img src="download[1].png" alt="Company Logo"></a>
+        </div>
+        <nav>
+            <a href="ff2.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="farmersell.html">Farmer Sell</a>
+            <a href="cart3.html" class="cart-count">Cart 🛒 </a>
+        </nav>
+        <div class="contact">
+            <span>Call us: +91 7349519566</span>
+        </div>
+    </header>
+    <div class="hero">
+        <h1>Save 30%<p>When buying seasonal veggies and fruits..</p></h1>
+        <a href="product.html" class="cta">Shop Now</a>
+    </div>
+    <div class="content">
+        <div class="category">
+            <h2>Shop By Category</h2>
+            <a href="product.html">All Products</a>
+            <a href="vegetable.html?category=vegetables">Vegetables</a>
+            <a href="fruits.html?category=fruits">Fruits</a>
+            <a href="Dairy.html?category=organic-dairy">Organic Dairy</a>
+            <a href="hotdeals.html?category=hot-deals">Hot Deals 🔥</a>
+        </div>
+        <div class="products">
+            <div class="we-are-fresh-food">
+                <img src="farmer.jpg" alt="Farmer Image">
+                <div class="we-are-fresh-food-content">
+                    <h2>We Are <i>FarmFresh</i></h2>
+                    <div class="features">
+                        <div class="feature">
+                            <img src="freesh.jpg" alt="Free Shipping">
+                            <h3>FREE SHIPPING</h3>
+                            <p>ON ORDER OVER 500</p>
+                        </div>
+                        <div class="feature">
+                            <img src="247.jpg" alt="Support">
+                            <h3>SUPPORT</h3>
+                            <p>LIFE TIME SUPPORT 24/7</p>
+                        </div>
+                        <div class="feature">
+                            <img src="help.jpg" alt="Help Partner">
+                            <h3>HELP PARTNER</h3>
+                            <p>HELP ALL ASPECTS</p>
+                        </div>
+                        <div class="feature">
+                            <img src="con.jpg" alt="Contact With Us">
+                            <h3>CONTACT WITH US</h3>
+                            <p>+91 7349519566</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Latest Products</h2>
+            <div class="product-list">
+                <!-- Fruits -->
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="Grapes.png" alt="Grapes">
+                    <h3>Grapes</h3>
+                    <p>₹200.00</p>
+                </a>
+                </div>
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="Apple.png" alt="Apple">
+                    <h3>Apple</h3>
+                    <p>₹140.00</p>
+                </a>
+                </div>
+                <!-- Vegetables -->
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="carrot.jpg" alt="Carrot">
+                    <h3>Carrot</h3>
+                    <p>₹60.00</p>
+                </a>
+                </div>
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="broc.jpg" alt="Broccoli">
+                    <h3>Broccoli</h3>
+                    <p>₹100.00</p>
+                </a>
+                </div>
+
+                <!-- Organic Dairy -->
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="mil.jpg" alt="Milk">
+                    <h3>Milk</h3>
+                    <p>₹50</p>
+                </a>
+                </div>
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="cheese.jpg" alt="Cheese">
+                    <h3>Cheese</h3>
+                    <p>₹120</p>
+                </a>
+                </div>
+                <!-- Hot Deals -->
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="strawberry.jpg" alt="Strawberry">
+                    <h3>Strawberry</h3>
+                    <p>₹200/box</p>
+                </a>
+                </div>
+                <div class="product">
+                  <a href="pd.html">
+                    <img src="orange.jpg" alt="Orange">
+                    <h3>Orange</h3>
+                    <p>₹130</p>
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Farm Fresh. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- The Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="" alt="Product Image" id="modalImage">
+            <h2 id="modalTitle">Product Title</h2>
+            <p id="modalPrice">Product Price</p>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("productModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Get product details
+        var modalImage = document.getElementById("modalImage");
+        var modalTitle = document.getElementById("modalTitle");
+        var modalPrice = document.getElementById("modalPrice");
+
+        // When the user clicks on a product, open the modal
+        var products = document.querySelectorAll(".product a");
+        products.forEach(function(product) {
+            product.addEventListener("click", function(event) {
+                event.preventDefault();
+                var imgSrc = this.querySelector("img").src;
+                var title = this.querySelector("h3").innerText;
+                var price = this.querySelector("p").innerText;
+
+                modalImage.src = imgSrc;
+                modalTitle.innerText = title;
+                modalPrice.innerText = price;
+
+                modal.style.display = "block";
+            });
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const product = {
+                        id: button.dataset.id,
+                        name: button.dataset.name,
+                        price: parseFloat(button.dataset.price),
+                        image: button.dataset.image,
+                        quantity: 1
+                    };
+                    addToCart(product);
+                });
+            });
+            updateCartCounter();
+        });
+
+        function addToCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingProduct = cartItems.find(item => item.id === product.id);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cartItems.push(product);
+            }
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCounter();
+        }
+
+        function updateCartCounter() {
+    const cartCounter = document.getElementById('cart-counter');
+    if (cartCounter) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartCounter.textContent = cartItems.length; // Or the total count of items
+    } else {
+        console.error('Element with id "cart-counter" not found.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCounter();
+});
+
+    </script>
+</body>
+</html>

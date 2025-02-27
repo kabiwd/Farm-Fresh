@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Fresh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar img {
+            width: 50px;
+        }
+        .navbar nav {
+            display: flex;
+            gap: 30px; /* Increased gap for more space between links */
+        }
+        .navbar nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+        }
+        .navbar .contact {
+            font-size: 1rem;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: url('rustic-composition-of-mixed-fruits-and-vegetables-2023-11-27-05-37-21-utc.jpg') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+        }
+        .container::before {
+            content: "FarmFresh"; /* Watermark text */
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+            pointer-events: none; /* Ensure the watermark doesn't interfere with other elements */
+        }
+        .logo {
+            margin-top: 50px;
+        }
+        .logo img {
+            width: 200px; /* Increased size */
+        }
+        .content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            color: #333; /* Dark text color */
+        }
+        .content p {
+            font-size: 1.1rem;
+            margin: 20px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="ff1.html"><img src="download[1].png" alt="FarmFresh Logo"></a>
+        <nav>
+            <a href="ff1.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="farmersell.html">Farmer Sell</a>
+            <a href="cart.html">Cart <span>🛒</span></a>
+        </nav>
+        <div class="contact">
+            Call us: +91 6360768428
+        </div>
+    </header>
+    <div class="container">
+        <div class="logo">
+            <img src="download[1].png" alt="FarmFresh Banner">
+        </div>
+        <div class="content">
+            <p>This platform aims to develop a platform dedicated to promoting direct sales of organic farm produce, facilitating a seamless connection between farmers and consumers. Traditionally, farmers sell their harvest to supermarkets or middlemen, often resulting in reduced profits and potential compromises in produce quality due to extended supply chains. This website will empower farmers by allowing them to directly upload their harvest details, set their own prices, and manage sales without intermediaries. Consumers will benefit from access to fresh, uncontaminated vegetables straight from the farm, ensuring higher quality and potentially lower costs.</p>
+        </div>
+    </div>
+</body>
+</html>

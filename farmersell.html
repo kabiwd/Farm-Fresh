@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f9f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group .required {
+            color: red;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .form-group .input-icon {
+            position: relative;
+        }
+
+        .form-group .input-icon input {
+            padding-left: 30px;
+        }
+
+        .form-group .input-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .address-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        .address-details input {
+            width: calc(33% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f8f9fa;
+        }
+
+        input[type="file"]::before {
+            content: "Drag & drop a file or browse";
+            color: #aaa;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        .next-button {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .next-button button {
+            background-color: #005f5f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .next-button button:hover {
+            background-color: #004848;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 14px;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .warning-message {
+            color: #d9534f;
+            font-size: 14px;
+            display: none;
+            margin-top: 5px;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-label input {
+            margin-right: 10px;
+        }
+
+        .thank-you-message {
+            display: none;
+            font-size: 24px;
+            color: green;
+            margin-top: 20px;
+        }
+
+        .thank-you-message .tick {
+            font-size: 48px;
+            display: block;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="welcome-container">
+        <img src="download[1].png" alt="Farmfresh Registration">
+        <h2>Farmer Registration Form</h2>
+        <p>Register to sell your produce</p>
+        <div class="next-button">
+            <button type="button" onclick="showNextForm('personal-info-form')">Start</button>
+        </div>
+    </div>
+
+    <div class="container" id="form-container" style="display:none;">
+        <h2>Personal Information</h2>
+        <form id="personal-info-form">
+            <div class="form-group">
+                <label for="full-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="full-name" name="full-name" placeholder="John Doe" required>
+                <div class="error-message" id="full-name-error">! Full Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-icon">
+                    <input type="email" id="email" name="email" placeholder="@gmail.com">
+                    <i class="fa fa-envelope"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="res-address">Residential Address <span class="required">*</span></label>
+                <input type="text" id="res-address" name="res-address" placeholder="Address" required>
+                <div class="error-message" id="res-address-error">! Residential Address is required</div>
+                <div class="address-details">
+                    <input type="text" id="res-city" name="res-city" placeholder="City">
+                    <input type="text" id="res-state" name="res-state" placeholder="State / Province">
+                    <input type="text" id="res-zip" name="res-zip" placeholder="ZIP / Postal code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="farm-address">Farm Address <span class="required">*</span></label>
+                <input type="text" id="farm-address" name="farm-address" placeholder="Address" required>
+                <div class="error-message" id="farm-address-error">! Farm Address is required</div>
+                <div class="address-details">
+                    <input type="text" id="farm-city" name="farm-city" placeholder="City">
+                    <input type="text" id="farm-state" name="farm-state" placeholder="State / Province">
+                    <input type="text" id="farm-zip" name="farm-zip" placeholder="ZIP / Postal code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="profile-picture">Profile Picture <span class="required">*</span></label>
+                <input type="file" id="profile-picture" name="profile-picture" required>
+                <div class="error-message" id="profile-picture-error">! Profile Picture is required</div>
+            </div>
+            <div class="form-group">
+                <label for="gov-id">Enter GOVERNMENT ID NO. <span class="required">*</span></label>
+                <input type="text" id="gov-id" name="gov-id" placeholder="eg: 1234 5678 9876" required>
+                <div class="error-message" id="gov-id-error">! Government ID No. is required</div>
+            </div>
+            <div class="form-group">
+                <label for="upload-id">Upload a Valid Government ID <span class="required">*</span></label>
+                <input type="file" id="upload-id" name="upload-id" required>
+                <div class="error-message" id="upload-id-error">! Uploading a Valid Government ID is required</div>
+            </div>
+            <div class="next-button">
+                <button type="button" onclick="validateForm()">Next &rarr;</button>
+            </div>
+        </form>
+
+        <form id="fruits-vegetables-form" style="display:none;">
+            <h2>Fruits and Vegetables Selection</h2>
+            <p>Select the fruits and vegetables you are willing to sell (select all that apply)</p>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="apple" name="apple">
+                    <label for="apple">Apple</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="banana" name="banana">
+                    <label for="banana">Banana</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="carrot" name="carrot">
+                    <label for="carrot">Carrot</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="lettuce" name="lettuce">
+                    <label for="lettuce">Lettuce</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="tomato" name="tomato">
+                    <label for="tomato">Tomato</label>
+                </div>
+            </div>
+            <div class="next-button">
+                <button type="button" onclick="showThankYouMessage()">Submit</button>
+            </div>
+        </form>
+
+        <div id="thank-you-message" class="thank-you-message">
+            <span class="tick">&#10003;</span>
+            Thank you for submitting your details!
+        </div>
+    </div>
+
+    <!-- Farmer Sell Form -->
+    <div class="container" id="farmer-sell-container" style="display:none;">
+        <h2>Farmer Sell Form</h2>
+        <form id="farmer-sell-form">
+            <div class="form-group">
+                <label for="product-name">Product Name <span class="required">*</span></label>
+                <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required>
+                <div class="error-message" id="product-name-error">! Product Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="product-price">Product Price <span class="required">*</span></label>
+                <input type="text" id="product-price" name="product-price" placeholder="Enter product price" required>
+                <div class="error-message" id="product-price-error">! Product Price is required</div>
+            </div>
+            <div class="form-group">
+                <label for="product-image">Product Image <span class="required">*</span></label>
+                <input type="file" id="product-image" name="product-image" required>
+                <div class="error-message" id="product-image-error">! Product Image is required</div>
+            </div>
+            <div class="next-button">
+                <button type="button" onclick="submitProduct()">Submit Product</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- All Products Section -->
+    <div class="container" id="all-products-container" style="display:none;">
+        <h2>All Products</h2>
+        <div id="all-products"></div>
+    </div>
+
+    <script>
+        function showNextForm(formId) {
+            document.getElementById('welcome-container').style.display = 'none';
+            document.getElementById('form-container').style.display = 'block';
+            document.getElementById(formId).style.display = 'block';
+        }
+
+        function validateForm() {
+            const requiredFields = ['full-name', 'res-address', 'farm-address', 'profile-picture', 'gov-id', 'upload-id'];
+            let isValid = true;
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(`${fieldId}-error`);
+                if (field.value.trim() === '') {
+                    errorElement.style.display = 'block';
+                    isValid = false;
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            });
+
+            if (isValid) {
+                document.getElementById('personal-info-form').style.display = 'none';
+                document.getElementById('fruits-vegetables-form').style.display = 'block';
+            }
+        }
+
+        function showThankYouMessage() {
+            document.getElementById('fruits-vegetables-form').style.display = 'none';
+            document.getElementById('thank-you-message').style.display = 'block';
+
+            setTimeout(function() {
+                document.getElementById('form-container').style.display = 'none';
+                document.getElementById('farmer-sell-container').style.display = 'block';
+            }, 2000);  // Show the thank you message for 2 seconds before redirecting
+        }
+
+        function submitProduct() {
+            const productName = document.getElementById('product-name').value;
+            const productPrice = document.getElementById('product-price').value;
+            const productImage = document.getElementById('product-image').files[0];
+
+            const productNameError = document.getElementById('product-name-error');
+            const productPriceError = document.getElementById('product-price-error');
+            const productImageError = document.getElementById('product-image-error');
+
+            let isValid = true;
+
+            if (productName.trim() === '') {
+                productNameError.style.display = 'block';
+                isValid = false;
+            } else {
+                productNameError.style.display = 'none';
+            }
+
+            if (productPrice.trim() === '') {
+                productPriceError.style.display = 'block';
+                isValid = false;
+            } else {
+                productPriceError.style.display = 'none';
+            }
+
+            if (!productImage) {
+                productImageError.style.display = 'block';
+                isValid = false;
+            } else {
+                productImageError.style.display = 'none';
+            }
+
+            if (isValid) {
+                // Display the product in the "All Products" section
+                const allProductsContainer = document.getElementById('all-products');
+
+                const productDiv = document.createElement('div');
+                productDiv.innerHTML = `
+                    <h3>${productName}</h3>
+                    <p>Price: ${productPrice}</p>
+                    <img src="${URL.createObjectURL(productImage)}" alt="${productName}" style="max-width: 200px;">
+                `;
+
+                allProductsContainer.appendChild(productDiv);
+
+                // Redirect to the "All Products" section
+                document.getElementById('farmer-sell-container').style.display = 'none';
+                document.getElementById('all-products-container').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

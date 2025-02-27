@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Fresh Vegetables</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo img {
+            max-height: 70px;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover {
+            color: #4CAF50;
+        }
+        header .cart-counter {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 14px;
+            display: none;
+        }
+        .products {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+        }
+        .products h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .products .search-filter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .products .search-filter input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .products .search-filter .view-options {
+            display: flex;
+            gap: 10px;
+        }
+        .products .search-filter .view-options i {
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+        .products .search-filter .view-options i:hover {
+            color: #4CAF50;
+        }
+        .products .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .products .product-list.list-view {
+            display: block;
+        }
+        .products .product-list.list-view .product {
+            display: block;
+            margin: 0 auto 20px;
+            width: 80%;
+            font-size: 16px;
+            text-align: left;
+        }
+        .products .product {
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .products .product img {
+            width: 100%;
+            height: auto;
+        }
+        .products .product h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .products .product p {
+            margin: 0;
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .products .product .view-product {
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .products .product .view-product:hover {
+            background-color: #45a049;
+        }
+        .product-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .product-details .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        .product-details .content img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .product-details .content h3 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .product-details .content p {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .product-details .content select,
+        .product-details .content input[type="number"] {
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+            max-width: 150px;
+            font-size: 14px;
+        }
+        .product-details .content button {
+            margin: 10px;
+            padding: 10px;
+            width: 45%;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .product-details .content .order-now {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .product-details .content .order-now:hover {
+            background-color: #45a049;
+        }
+        .product-details .content .add-to-cart {
+            background-color: #2196F3;
+            color: #fff;
+        }
+        .product-details .content .add-to-cart:hover {
+            background-color: #1976D2;
+        }
+        .product-details .content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-details .content .close:hover {
+            background-color: #e53935;
+        }
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function toggleView(view) {
+            const productList = document.querySelector('.product-list');
+            if (view === 'grid') {
+                productList.classList.remove('list-view');
+                productList.style.display = 'flex';
+                productList.style.flexWrap = 'wrap';
+                productList.style.justifyContent = 'center';
+            } else {
+                productList.classList.add('list-view');
+                productList.style.display = 'block';
+            }
+        }
+
+        function filterProducts() {
+            const searchInput = document.querySelector('input[type="text"]').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function showProductDetails(product) {
+            const details = document.querySelector('.product-details');
+            const img = details.querySelector('img');
+            const name = details.querySelector('h3');
+            const price = details.querySelector('p');
+
+            img.src = product.querySelector('img').src;
+            name.textContent = product.querySelector('h3').textContent;
+            price.textContent = product.querySelector('p').textContent;
+
+            details.style.display = 'flex';
+        }
+
+        function hideProductDetails() {
+            document.querySelector('.product-details').style.display = 'none';
+        }
+
+        function updateCartCounter() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCounter = document.querySelector('.cart-counter');
+            cartCounter.textContent = cartItems.length;
+            cartCounter.style.display = cartItems.length > 0 ? 'inline-block' : 'none';
+        }
+
+        function addToCart(product) {
+            const productId = product.querySelector('h3').textContent;
+            const productImage = product.querySelector('img').src;
+            const productPrice = parseFloat(product.querySelector('p').textContent.replace(' INR', ''));
+
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingProduct = cartItems.find(item => item.id === productId);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cartItems.push({ id: productId, image: productImage, price: productPrice, quantity: 1 });
+            }
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCounter();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('input[type="text"]').addEventListener('input', filterProducts);
+
+            document.querySelectorAll('.view-product').forEach(button => {
+                button.addEventListener('click', () => {
+                    showProductDetails(button.closest('.product'));
+                });
+            });
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    addToCart(button.closest('.product'));
+                    hideProductDetails();
+                });
+            });
+
+            document.querySelector('.product-details .close').addEventListener('click', hideProductDetails);
+
+            updateCartCounter();
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="ff1.html"><img src="download[1].png" alt="Company Logo"></a>
+    </div>
+    <nav>
+        <a href="ff1.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="farmersell.html">Farmer Sell</a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="cart-counter"></span></a>
+    </nav>
+    <div class="contact">
+        <span>Call us: 7349519566</span>
+    </div>
+</header>
+<div class="products">
+    <h2>Vegetables</h2>
+    <div class="search-filter">
+        <input type="text" placeholder="Search products">
+        <div class="view-options">
+            <i class="fas fa-th-large" onclick="toggleView('grid')"></i>
+            <i class="fas fa-bars" onclick="toggleView('list')"></i>
+        </div>
+    </div>
+    <div class="product-list">
+        <div class="product">
+            <img src="tomato.jpg" alt="Tomato">
+            <h3>Tomato</h3>
+            <p>50.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product">
+            <img src="potato.jpg" alt="Potato">
+            <h3>Potato</h3>
+            <p>30.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product">
+            <img src="broc.jpg" alt="Broccoli">
+            <h3>Broccoli</h3>
+            <p>80.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Cauliflower">
+            <h3>Cauliflower</h3>
+            <p>60.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Radish">
+            <h3>Radish</h3>
+            <p>40.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Spinach">
+            <h3>Spinach</h3>
+            <p>70.00 INR</p>
+            <button class="view-product">View Product</button>
+        </div>
+    </div>
+</div>
+<div class="product-details">
+    <div class="content">
+        <button class="close">&times;</button>
+        <img src="https://via.placeholder.com/200" alt="Product Image">
+        <h3>Product Name</h3>
+        <p>Product Price</p>
+        <div class="quantity">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+        </div>
+        <div class="farmer">
+            <label for="farmer">Farmer:</label>
+            <select id="farmer" name="farmer">
+                <option value="Farmer 1">Farmer 1</option>
+                <option value="Farmer 2">Farmer 2</option>
+                <option value="Farmer 3">Farmer 3</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="order-now">Order Now</button>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2024 Farm Fresh. All rights reserved. | <a href="#">Privacy Policy</a></p>
+</footer>
+</body>
+</html>
